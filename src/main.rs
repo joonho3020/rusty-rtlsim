@@ -63,7 +63,11 @@ fn emit_rtl_to_jit(nodes: &[Node]) -> Box<dyn Fn(u8, u8) -> u8> {
         };
     }
 
-    func_builder.ins().return_(&[cr_values[nodes.len() - 1]]);
+    let out = cr_values[nodes.len() - 1];
+
+    let mask = func_builder.ins().iconst(types::I8, 1);
+    let masked = func_builder.ins().band(out, mask);
+    func_builder.ins().return_(&[masked]);
     func_builder.finalize();
 
     let func_id = module
