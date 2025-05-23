@@ -1,0 +1,12 @@
+[package]
+name = "rusty-rtlsim"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cranelift-codegen = "0.105"
+cranelift-frontend = "0.105"
+cranelift-module = "0.105"
+cranelift-jit = "0.105"
+target-lexicon = "0.12"
+
